@@ -2,12 +2,19 @@
 
 # standard imports
 import logging
+import os
 import psycopg2
 
+# env vars
+POSTGRES_USER = os.getenv("POSTGRES_USER", None)
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", None)
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "127.0.0.1")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", 5432)
+POSTGRES_DB = os.getenv("POSTGRES_DB", "test")
 
 class Postgres:
     """ Simple Postgres object."""
-    def __init__(self, db_config):
+    def __init__(self):
         """
         Init Postgres object. 
         We pass in a db_config object, which has the form:
@@ -28,11 +35,11 @@ class Postgres:
                     db_config["host"], \
                     db_config["port"] \
                     )
-            self.conn = psycopg2.connect(user=db_config["username"], \
-                    password=db_config["password"], \
-                    host=db_config["host"], \
-                    port=db_config["port"], \
-                    database=db_config["database"] \
+            self.conn = psycopg2.connect(user=POSTGRES_USER, \
+                    password=POSTGRES_PASSWORD, \
+                    host=POSTGRES_HOST, \
+                    port=POSTGRES_PORT, \
+                    database=POSTGRES_DB \
                     )
             # set cursor on the database
             self.cur = self.conn.cursor()
