@@ -3,37 +3,30 @@
 # standard imports
 import logging
 import os
+import sys
+
+# non-standard imports
 import psycopg2
 
 # env vars
 POSTGRES_USER = os.getenv("POSTGRES_USER", None)
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", None)
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "127.0.0.1")
-POSTGRES_PORT = os.getenv("POSTGRES_PORT", 5432)
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
 POSTGRES_DB = os.getenv("POSTGRES_DB", "test")
 
 class Postgres:
     """ Simple Postgres object."""
     def __init__(self):
         """
-        Init Postgres object. 
-        We pass in a db_config object, which has the form:
-        ```
-        db_config = {
-            user="",
-            password="",
-            host="",
-            port="",
-            database=""
-        }
-        ```
+        Init Postgres object.
         """
         # connect to a database
         try:
             logging.info("Connecting to db %s on %s:%s", \
-                    db_config["database"], \
-                    db_config["host"], \
-                    db_config["port"] \
+                    POSTGRES_DB, \
+                    POSTGRES_HOST, \
+                    POSTGRES_PORT \
                     )
             self.conn = psycopg2.connect(user=POSTGRES_USER, \
                     password=POSTGRES_PASSWORD, \
@@ -42,7 +35,7 @@ class Postgres:
                     database=POSTGRES_DB \
                     )
             # set cursor on the database
-            self.cur = self.conn.cursor()
+            self.cursor = self.conn.cursor()
             logging.info("Connection successful!")
         except psycopg2.OperationalError as exc:
             logging.error("Unable to connect to database: %s", exc)
@@ -52,7 +45,7 @@ class Postgres:
         # pass in an SQL query to the database
         # get more info on structure of this method
         self.cursor.execute(sql)
-        # get the returning id of the SQL query 
+        # get the returning id of the SQL query
         ret_data = self.cursor.fetchall()
         return ret_data
 
@@ -65,19 +58,22 @@ class Postgres:
         The handler for this method will parse the YAML and send the output \
                 to this method in order to create the necessary tables.
         """
+        if (not table_name) or (not primkey):
+            logging.error("You need to specify a table and a primary key!")
+            sys.exit(1)
         # start the query
         sql = f"CREATE TABLE {table_name}("
 
         # add in each column
         for column in columns:
             sql += f"{column['name']} {column['dtype']},"
-        
+
         # finish query with primkey
         sql += "PRIMARY KEY({primkey}))"
 
         # execute the query
         self.exec(sql)
-        return table
+        return table_name
 
     def update_table(self, table):
         """ Update Table."""
