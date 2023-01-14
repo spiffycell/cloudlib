@@ -1,0 +1,32 @@
+""" Test ."""
+#!/usr/bin/python3
+
+import logging
+import signal
+import sys
+
+def test_boolean_envs():
+    """ Test truthy/falsy values."""
+    truthy = [
+        "y",
+        "yes",
+        " y",
+        "y ",
+        "true"
+    ]
+    falsy = [
+        "n",
+        "no",
+        " n",
+        "n ",
+        "false"
+    ]
+
+    # then we need to assert these values
+    # are truthy / falsy
+	return
+
+if __name__ == "__main__":
+    """ ."""
+    signal.signal(signal.SIGINT, cb_control_c)
+	test_boolean_envs()
