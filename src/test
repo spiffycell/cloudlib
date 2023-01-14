@@ -1,5 +1,5 @@
-""" Test ."""
 #!/usr/bin/python3
+""" Test ."""
 
 import logging
 import signal
@@ -26,7 +26,12 @@ def test_boolean_envs():
     # are truthy / falsy
 	return
 
+def test_module_methods():
+    test_postgres_methods()
+    test_vault_methods()
+
+
 if __name__ == "__main__":
-    """ ."""
-    signal.signal(signal.SIGINT, cb_control_c)
+    """ Initialize tests."""
 	test_boolean_envs()
+    test_module_methods()
