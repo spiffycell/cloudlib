@@ -1,4 +1,21 @@
 ---
 version: '3.3'
   services:
-    pylint:
+    cloudlib: &app
+      image: cloudlib 
+      build:
+        context: src/
+        args:
+          - VERSION=${VERSION} commit ${VCS_REF}
+
+    linter:
+      <<: *app
+      entrypoint: /opt/app/linter
+
+    test:
+      <<: *app
+      entrypoint: /opt/app/test
+      env_file: ~/.env
+      environment:
+        - CI
+        - DEBUG
