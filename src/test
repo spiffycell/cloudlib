@@ -12,6 +12,11 @@ from utils import config_logs
 
 def test_boolean_envs():
     """ Test truthy/falsy values."""
+    # we need to assert truthy / falsy values
+    # these is our sanity-testing framework
+    # https://realpython.com/python-assert-statement/
+
+    # declare set of truthy/falsy statements
     truthy = [
         "y",
         "yes",
@@ -27,8 +32,6 @@ def test_boolean_envs():
         "false"
     ]
 
-    # then we need to assert these values
-    # are truthy / falsy
 	return
 
 def test_postgres_methods():
