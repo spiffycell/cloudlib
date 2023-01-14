@@ -5,5 +5,4 @@ Typically, this will be hosted as a standalone repo.
 		- The services using the library will point to the registry \
 			and download the library
 
-Much of the setup and the structure of this and related repos are inspired \
-by the work by [jumanjihouse](https://github.com/jumanjihouse)
+Much of the setup and the structure of this and related repos are inspired by the work by [jumanjihouse](https://github.com/jumanjihouse)
