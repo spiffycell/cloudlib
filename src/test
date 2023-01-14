@@ -1,9 +1,14 @@
 #!/usr/bin/python3
-""" Test ."""
+""" Test file."""
 
+# standard imports
 import logging
 import signal
 import sys
+
+# non-standard imports
+from utils import config_logs
+
 
 def test_boolean_envs():
     """ Test truthy/falsy values."""
@@ -26,12 +31,22 @@ def test_boolean_envs():
     # are truthy / falsy
 	return
 
+def test_postgres_methods():
+    """ Test methods of our Postgres class."""
+    return
+
+def test_vault_methods():
+    """ Test methods of our Vault class."""
+    return
+
 def test_module_methods():
+    """ Test methods of each of the modules in cloudlib."""
     test_postgres_methods()
     test_vault_methods()
 
 
 if __name__ == "__main__":
     """ Initialize tests."""
+    config_logs("cloudlib test")
 	test_boolean_envs()
     test_module_methods()
