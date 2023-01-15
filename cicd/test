@@ -1,4 +1,10 @@
 #!/bin/bash
 
+# run linter
 docker-compose run linter
+
+# run testing script
 docker-compose run tester
+
+# run pre-commit
+python3 -m pre_commit
