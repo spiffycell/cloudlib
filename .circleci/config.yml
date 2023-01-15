@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/cloudlib
+    working_directory: ~/cloudlib/
     docker:
       - image: alpine:3.17
     steps:
