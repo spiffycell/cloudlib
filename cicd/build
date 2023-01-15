@@ -12,4 +12,10 @@ export TAG=$(date +%Y%m%d.%H%M)
 export CI_BUILD_URL=${CI_BUILD_URL:-unset}
 EOF
 
+. cicd/vars
 
+# build the image 
+docker-compose build
+
+# check if image was built successfully
+docker images
