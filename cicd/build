@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -eEu
 set -o pipefail
 
 # first we want to specify the build vars
