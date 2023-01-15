@@ -15,6 +15,7 @@ def test_boolean_envs():
     # we need to assert truthy / falsy values
     # these is our sanity-testing framework
     # https://realpython.com/python-assert-statement/
+    # https://realpython.com/python-boolean/#python-boolean-testing
 
     # declare set of truthy/falsy statements
     truthy = [
