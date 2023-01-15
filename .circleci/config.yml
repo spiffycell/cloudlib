@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  cicd:
+  build:
     docker:
       - image: alpine:3.17
     steps:
