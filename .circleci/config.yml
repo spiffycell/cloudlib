@@ -3,8 +3,8 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/cloudlib/
-    docker:
-      - image: alpine:3.17
+    machine:
+      - image: ubuntu-2004:2022.10.1
     steps:
       - checkout
       - run:
