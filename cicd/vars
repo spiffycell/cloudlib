@@ -1,0 +1,4 @@
+export BUILD_DATE=20230115T1251
+export VCS_REF=507223a
+export TAG=20230115.1251
+export CI_BUILD_URL=unset

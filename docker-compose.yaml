@@ -1,21 +1,21 @@
 ---
 version: '3.3'
-  services:
-    cloudlib: &app
-      image: cloudlib 
-      build:
-        context: src/
-        args:
-          - VERSION=${VERSION} commit ${VCS_REF}
+services:
+  cloudlib: &app
+    image: cloudlib 
+    build:
+      context: src/
+      args:
+        - VERSION=${VERSION} commit ${VCS_REF}
 
-    linter:
-      <<: *app
-      entrypoint: /opt/app/linter
+  linter:
+    <<: *app
+    entrypoint: /opt/app/linter
 
-    tester:
-      <<: *app
-      entrypoint: /opt/app/test
-      env_file: ~/.env
-      environment:
-        - CI
-        - DEBUG
+  tester:
+    <<: *app
+    entrypoint: /opt/app/test
+    env_file: ~/.env
+    environment:
+      - CI
+      - DEBUG
