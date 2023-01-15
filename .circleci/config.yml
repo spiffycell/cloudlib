@@ -7,14 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "bootstrap"
-          command: "cicd/bootstrap"
+          name: "bootstrap the env"
+          command: cicd/bootstrap
       - run:
-          name: "build"
-          command: "cicd/build"
+          name: "build the image"
+          command: cicd/build
       - run:
-          name: "test"
-          command: "cicd/test"
+          name: "test the build"
+          command: cicd/test
       - run:
-          name: "publish"
-          command: "cicd/publish"
+          name: "publish the image"
+          command: cicd/publish
